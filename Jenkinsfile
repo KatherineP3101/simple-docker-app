@@ -5,10 +5,24 @@ pipeline {
         jdk 'jdk-21'
     }
 
+    environment{
+            SONAR_TOKEN =credentials('sonar-token')
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/KatherineP3101/simple-docker-app.git'
+            }
+        }
+
+        stage('SonarQube') {
+            steps {
+                script {
+                    withSonarQubeEnv('Sonar') {
+                        bat 'mvnw sonar:sonar -Dsonar.projectKey=simple-docker-app -Dsonar.token=%SONAR_TOKEN%'
+                    }
+                }
             }
         }
 
