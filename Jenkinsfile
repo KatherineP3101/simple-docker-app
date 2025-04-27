@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('simple-docker-app') {
-                    bat 'docker run -d -p 8081:8080 --name docker-app'
+                    bat 'docker run -d -p 8081:8080 --name docker-app3 docker-app'
                 }
             }
         }
