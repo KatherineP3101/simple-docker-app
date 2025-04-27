@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('Sonar') {
-                        bat 'mvnw.cmd sonar:sonar -Dsonar.projectKey=simple-docker-app -Dsonar.token=%SONAR_TOKEN%'
+                        bat 'call mvnw.cmd sonar:sonar -Dsonar.projectKey=simple-docker-app -Dsonar.token=%SONAR_TOKEN%'
                     }
                 }
             }
