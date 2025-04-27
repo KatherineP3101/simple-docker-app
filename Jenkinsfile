@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('library') {
+                dir('simple-docker-app') {
                     bat 'call mvnw.cmd clean package -DskipTests'
                 }
             }
