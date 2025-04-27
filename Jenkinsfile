@@ -18,9 +18,11 @@ pipeline {
 
         stage('SonarQube') {
             steps {
-                script {
-                    withSonarQubeEnv('Sonar') {
-                        bat 'mvn sonar:sonar -Dsonar.projectKey=simple-docker-app -Dsonar.token=%SONAR_TOKEN%'
+                dir('simple-docker-app') {
+                    script {
+                        withSonarQubeEnv('Sonar') {
+                                bat 'call mvnw.cmd sonar:sonar -Dsonar.projectKey=simple-docker-app -Dsonar.token=%SONAR_TOKEN%'
+                        }
                     }
                 }
             }
