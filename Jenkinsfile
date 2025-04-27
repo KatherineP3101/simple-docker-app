@@ -23,8 +23,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 dir('simple-docker-app') {
-                    bat 'docker build -f simple-docker-app/Dockerfile
-                    --build-arg JAR_FILE=simple-docker-app/target/simple-docker-app-0.0.1-SNAPSHOT.jar -t docker-app .'
+                    bat 'docker build -f Dockerfile --build-arg JAR_FILE=simple-docker-app/target/simple-docker-app-0.0.1-SNAPSHOT.jar -t docker-app .'
                 }
             }
         }
@@ -32,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('simple-docker-app') {
-                    bat 'docker -f docker-app up -d'
+                    bat 'docker run -d -p 8081:8080 --name docker-app'
                 }
             }
         }
